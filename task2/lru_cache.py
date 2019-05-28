@@ -1,4 +1,10 @@
 
+"""
+Used hash data structure (dict) for accessing the key.
+Used queue for tracking/insertion/deletion. Implemented the queue using doubly linked lists.
+The above data structures help us in achieving O(1) time complexity
+"""
+
 class Node(object):
     def __init__(self, key, value):
         self.key=key
@@ -17,7 +23,6 @@ class LRU_Cache(object):
         self.head.next=self.tail
         self.tail.prev=self.head
         
-
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent.
         if key in self.dict:
@@ -57,6 +62,6 @@ our_cache = LRU_Cache(5)
 
 our_cache.set(1, 1)
 our_cache.set(2, 2)
-our_cache.get(1)       # returns 1
-our_cache.get(2)       # returns 2
-our_cache.get(3)       # return -1
+print(our_cache.get(1))       # returns 1
+print(our_cache.get(2))      # returns 2
+print(our_cache.get(3))      # return -1
