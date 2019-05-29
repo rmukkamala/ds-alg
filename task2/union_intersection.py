@@ -58,14 +58,68 @@ class LinkedList:
             node = node.next
 
         return size
+    
+    def duplicate(self):
+        copy = LinkedList()
+        current = self.head
+        while current:
+            node = Node(current.value)
+            copy.append(node)
+            current = current.next
+        return copy
+
+def remove_duplicates(llist):
+    node=llist.head
+    prev=None
+    lookup=dict()
+    while node:
+        if node.value in lookup:
+            ##delete
+            prev.next=node.next
+            prev=None
+            pass
+        else:
+            lookup[node.value]=1
+        prev=node
+        node=node.next
+
 
 def union(llist_1, llist_2):
     # Your Solution Here
-    pass
+    if llist_1.head is None:
+        union = llist_2.duplicate()
+        remove_duplicates(union)
+        return union
+    if llist_2.head is None:
+        union = llist_1.duplicate()
+        remove_duplicates(union)
+        return union
+    union=llist_1.duplicate()
+    last_node=union.head
+    while last_node.next is not None:
+        last_node=last_node.next
+    last_node.next=llist_2.head
+    remove_duplicates(union)
+    return union
 
 def intersection(llist_1, llist_2):
     # Your Solution Here
-    pass
+    if llist_1.head is None or llist_2.head is None:
+        return LinkedList()
+    curr=llist_1.head
+    ref=dict()
+    while curr:
+        ref[curr.value]=1
+        curr=curr.next
+    curr2=llist_2.head
+    llist_3=LinkedList()
+    while curr2:
+        if curr2.value in ref:
+            llist_3.append(curr2.value)
+        curr2=curr2.next
+    remove_duplicates(llist_3)
+    return llist_3
+
 
 
 # Test case 1
