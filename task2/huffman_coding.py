@@ -43,7 +43,7 @@ def buildTree(tuples):
 ##filter the frequencies in the tree
 def trimTree (tree) :
     p = tree[1]
-    #print(p)                                   # ignore freq count in [0]
+    #print(p)                                   
     if type(p) == type("") : 
         #print(p)
         return p
@@ -54,9 +54,9 @@ def trimTree (tree) :
 def assignCodes (node, pat='') :
     global codes
     if type(node) == type("") :
-        codes[node] = pat                # A leaf. set its code
-    else  :                              #
-        assignCodes(node[0], pat+"0")    # Branch point. Do the left branch
+        codes[node] = pat                
+    else  :                              
+        assignCodes(node[0], pat+"0")    
         assignCodes(node[1], pat+"1") 
 
 ##encode the string

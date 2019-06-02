@@ -18,20 +18,41 @@ Time Complexity: O(n*m) where n is the number of files and m is the number of di
 
 
 Huffman Coding:
-
-Used tuples and lists to implement trees as data structure. 
+Ideally, we use min-heaps to implement this. But since, we did not cover them in this module. I went with a different approach.
+Used tuples and lists to implement binary trees as data structure. 
 
 Helper functions used for encoding and decoding:
 def frequency: get frequency of the chars in a dictionary for the input string
 def sort_frequency: sort the frequencies in a list of tuples
-def buildTree: build a tree with tuples
+def buildTree: build a tree with sorted tuples in 
 def trimTree: filter the frequencies in the tree
 def assignCodes: assign binary codes for the chars
+def encode: encode the text string. We use the helper functions above to generate a code dictionry and encode.
+def decode: decode the binary string. Based on the bit code in the string, we traverse the tree until we reach the leaf nodes.
 
+Time Complexity: 
+For encoding, worst case may be O(n*2) since the the frequency method uses a dict get method in a for loop.
+For decoding , worst case will be O(n)
 
-def encode: ##encode the string
-def decode: ##decode the string
 
 
 Active Dirs:
+We use recursion to get all the users in a group and their sub-groups. A better approach may be using binary search tree which is not yet covered in this module.
+Time Complexity: O(m*n) where m is the number of users and n is the number of groups
+
+Blockchain:
+We use a list to hold all the blocks which are interlinked similar to linked lists.
+We create genesis block as the first block to start with. We add a block using the last element(block) in the list 
+Time Complexity: 
+Worst Case to display blockchain function is O(n).
+Wrost case to create and add a block is O(1).
+
+
+Union and intersection of 2 linked lists:
+Both union and intersection operations require not to have duplicates in them.
+We use dictionary as a lookup to remove deuplicates.
+Union operation just assigns the head of one linked list to the tail of another linked list. Then, we remove duplicates from the linked list.
+Intersection operation uses a dictionary as a lookup for one linked list and the traverse through another linked list to get the common elements and then remove the duplicates.
+Time Complexity:
+Due to the precense of a dictionary lookup in a while loop, bot the union and intersection have a worst case analysis of O(n*2) where n is the number of elements in the list.
 
