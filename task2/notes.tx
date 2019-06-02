@@ -1,0 +1,37 @@
+
+LRU:
+Used hash data structure (dictionary) for accessing the key.
+Used queue for tracking/insertion/deletion. 
+Implemented the queue using doubly linked lists.
+Time Complexity: The above data structures help us in achieving O(1) time complexity.
+
+get Method:
+# Retrieve item from provided key. Return -1 if nonexistent.
+set Method:
+# Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
+
+
+File Recursion:
+The find_files function will return for every file in a folders recursively with given input pattern(extension)
+Used recursion to find the relevant files in the sub folders as well.
+Time Complexity: O(n*m) where n is the number of files and m is the number of directories.(It will mostly lead to O(n) in most cases since n will be bigger than m)
+
+
+Huffman Coding:
+
+Used tuples and lists to implement trees as data structure. 
+
+Helper functions used for encoding and decoding:
+def frequency: get frequency of the chars in a dictionary for the input string
+def sort_frequency: sort the frequencies in a list of tuples
+def buildTree: build a tree with tuples
+def trimTree: filter the frequencies in the tree
+def assignCodes: assign binary codes for the chars
+
+
+def encode: ##encode the string
+def decode: ##decode the string
+
+
+Active Dirs:
+

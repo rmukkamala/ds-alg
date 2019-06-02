@@ -10,7 +10,7 @@ class Group(object):
 
     def add_user(self, user):
         self.users.append(user)
-
+        
     def get_groups(self):
         return self.groups
 
@@ -29,20 +29,17 @@ def is_user_in_group(user, group):
       user(str): user name/id
       group(class:Group): group to check user membership against
     """
-    print(f"Values are {user} and  {group.get_name()}")
-    print(f"Values are {user} and  {group.get_users()}")
     if user in group.get_users():
         return True
-    gorup_list=list()
+    group_list=list()
+    results=list()
     group_list=group.get_groups()
-    #print(group_list)
     if len(group_list) > 0:
         for entry in group_list:
-
-            #print(entry.get_name())
-            return is_user_in_group(user, entry)
+            results.append(is_user_in_group(user, entry))
+    if True in results:
+        return True
     return False
-
 
 parent = Group("parent")
 child = Group("child")
@@ -56,8 +53,15 @@ child.add_group(sub_child)
 child.add_group(grand_child)
 parent.add_group(child)
 
+grand_child.add_user("jack")
 child.add_user("rohan")
-#print(child.get_users())
-#print(child.get_groups())
+child.add_user("tony")
 
-print(is_user_in_group("rohan",parent))
+##Test Cases
+
+print(is_user_in_group("rohan",parent)) ##True
+print(is_user_in_group("tony",sub_child))  ##True
+print(is_user_in_group("tony",parent)) ##True
+print(is_user_in_group("mike",parent))  ##False
+print(is_user_in_group("joel",parent))  ##False
+print(is_user_in_group("jack",parent))  ##False

@@ -41,10 +41,12 @@ def buildTree(tuples):
         sum_freq=least_two[0][0] + least_two[1][0]
         tuples= rest + [(sum_freq,least_two)]
         tuples.sort(key=lambda t: t[0])
+        #print(tuples)
     return tuples[0]
 
 def trimTree (tree) :
-    p = tree[1]                                    # ignore freq count in [0]
+    p = tree[1]
+    #print(p)                                   # ignore freq count in [0]
     if type(p) == type("") : 
         #print(p)
         return p
@@ -67,36 +69,65 @@ def encode (str) :
     for ch in str : output += codes[ch]
     return output
 
-def decode(tree, str) :
+# def decode(tree, str) :
+#     output = ""
+#     p = tree
+#     #print(p)
+#     for bit in str :
+#         if bit == '0' : 
+#             #print(p[0])
+#             k = p[0]     # Head up the left branch
+#             pass
+#         else: 
+#             k = p[1]    # or up the right branch
+#             pass
+#         if type(k) == type(""):
+#             output += k              # found a character. Add to output
+#             k = tree                 # and restart for next character
+#     return output
+
+def decode (tree, str) :
     output = ""
     p = tree
-    #print(p)
+    print(f"tree is {tree}")
     for bit in str :
         if bit == '0' : 
+            # print(f"p0 is {p[0]}")
+            # print(f"p1 is {p[1]}")
+            p = p[0]   # Head up the left branch
             #print(p[0])
-            k = p[0]     # Head up the left branch
-            pass
         else: 
-            k = p[1]    # or up the right branch
-            pass
-        if type(k) == type(""):
-            output += k              # found a character. Add to output
-            k = tree                 # and restart for next character
+            #pass
+            print(f"p1 is {p[1]}")
+            p = p[1]    # or up the right branch
+            #print(p[1])
+        if type(p) == type("") :
+            print(f"final char is {p}")     
+            output += p              # found a character. Add to output
+            p = tree                 # and restart for next character
     return output
 
+
 msg= "The bird is the word"
+#msg="hello"
 hash=frequency(msg)
 tuples=sort_frequency(hash)
 #print(tuples)
 tree=buildTree(tuples)
-print(tree)
+#print(tree[0])
+#print(tree[1])
+
+# for entry in tree[1]:
+#     print(entry)
+#print(tree)
 trim=trimTree(tree)
+#print(trim)
 assignCodes(trim)
 
 small = encode(msg)
 print(small)
-original = decode(tree, small)
-print(original)
+original = decode(trim, small)
+print(f"Original is {original}")
 
 # print("Original text length", len(msg))
 # print("Requires %d bits. (%d bytes)" % (len(small), (len(small)+7)/8))

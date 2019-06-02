@@ -33,4 +33,8 @@ def find_files(suffix, path):
     return list_of_files
 
 
-print(find_files('.c','/Users/tony/Downloads/testdir'))
+print(find_files('.c','/Users/tony/Downloads/testdir')) #return .c files recursively 
+print(find_files('.h','/Users/tony/Downloads/testdir')) #returns .h files recursively
+print(find_files('.cpp','/Users/tony/Downloads/testdir')) #returns .cpp files recursively
+
+## returns emty list [] if no files are present
