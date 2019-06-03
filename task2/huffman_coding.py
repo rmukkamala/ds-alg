@@ -82,69 +82,72 @@ def decode (tree, str) :
     return output
 
 
-def huffman_encoding(data):
+def huffman_encoding(data=None):
+    if data==None or data=="":
+        return None
+    global codes
     hash=frequency(data)
     tuples=sort_frequency(hash)
     tree=buildTree(tuples)
     trim_tree=trimTree(tree)
-    assignCodes(trim_tree)
+    if len(trim_tree)==1:
+        codes[trim_tree] ="0"
+    else:
+        assignCodes(trim_tree)
     return (encode(data),trim_tree)
     
 
 def huffman_decoding(data,tree):
+    if data==None or data=="":
+        return None 
     return decode(tree, data)
 
 if __name__ == "__main__":
     codes = {}
 
-   #test case 1
+    #test case 1
     print("#####TEST CASE 1#############")
     a_great_sentence = "The bird is the word"
+    if a_great_sentence.strip():
+        print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+        print ("The content of the data is: {}\n".format(a_great_sentence))
+        encoded_data, tree = huffman_encoding(a_great_sentence)
+        print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+        print ("The content of the encoded data is: {}\n".format(encoded_data))
+        decoded_data = huffman_decoding(encoded_data, tree)
+        print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+        print ("The content of the decoded data is: {}\n".format(decoded_data))
+    else:
+        print("The input string is empty ! Please verify")
 
-    print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
-    print ("The content of the data is: {}\n".format(a_great_sentence))
 
-    encoded_data, tree = huffman_encoding(a_great_sentence)
-
-    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-    print ("The content of the encoded data is: {}\n".format(encoded_data))
-
-    decoded_data = huffman_decoding(encoded_data, tree)
-
-    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-    print ("The content of the decoded data is: {}\n".format(decoded_data))
-
-    #test case 2
+    ###test case 2
     print("#####TEST CASE 2#############")
-    a_great_sentence = "AAAAAAAAAAAA"
-
-    print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
-    print ("The content of the data is: {}\n".format(a_great_sentence))
-
-    encoded_data, tree = huffman_encoding(a_great_sentence)
-
-    #print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-    print ("The content of the encoded data is: {}\n".format(encoded_data))
-
-    decoded_data = huffman_decoding(encoded_data, tree)
-
-    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-    print ("The content of the decoded data is: {}\n".format(decoded_data))
+    a_great_sentence = "AAAAAAA"
+    if a_great_sentence.strip():
+        print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+        print ("The content of the data is: {}\n".format(a_great_sentence))
+        encoded_data, tree = huffman_encoding(a_great_sentence)
+        print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+        print ("The content of the encoded data is: {}\n".format(encoded_data))
+        decoded_data = huffman_decoding(encoded_data, tree)
+        print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+        print ("The content of the decoded data is: {}\n".format(decoded_data))
+    else:
+        print("The input string is empty ! Please verify")
 
 
-# #test case 3
-#     print("#####TEST CASE 3#############")
-#     a_great_sentence = "Hello ! 'What is the deepest point on earth?' "
-
-#     print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
-#     print ("The content of the data is: {}\n".format(a_great_sentence))
-
-#     encoded_data, tree = huffman_encoding(a_great_sentence)
-
-#     print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-#     print ("The content of the encoded data is: {}\n".format(encoded_data))
-
-#     decoded_data = huffman_decoding(encoded_data, tree)
-
-#     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-#     print ("The content of the decoded data is: {}\n".format(decoded_data))
+    #test case 3
+    print("#####TEST CASE 3#############")
+    a_great_sentence = "  "
+    if a_great_sentence.strip():
+        print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+        print ("The content of the data is: {}\n".format(a_great_sentence))
+        encoded_data, tree = huffman_encoding(a_great_sentence)
+        print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+        print ("The content of the encoded data is: {}\n".format(encoded_data))
+        decoded_data = huffman_decoding(encoded_data, tree)
+        print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+        print ("The content of the decoded data is: {}\n".format(decoded_data))
+    else:
+        print("The input string is empty ! Please verify")
