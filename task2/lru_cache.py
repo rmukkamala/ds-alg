@@ -31,7 +31,7 @@ class LRU_Cache(object):
             return self.dict[key].value
         return -1
 
-    def set(self, key, value):
+    def set(self, key, value=None):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
         if key in self.dict:
             self._remove(self.dict[key])
@@ -66,3 +66,31 @@ our_cache.set(4, 5)
 print(our_cache.get(1))       # returns 1
 print(our_cache.get(2))      # returns 2
 print(our_cache.get(3))      # return -1
+
+##test case 2
+print("#######Test Case 2 #########")
+our_cache2 = LRU_Cache(4)
+
+our_cache2.set(1, 2)
+our_cache2.set(2, 4)
+our_cache2.set(3, 7)
+our_cache2.set(4, 9)
+our_cache2.set(5, 8)
+print(our_cache2.get(1))      # returns -1
+print(our_cache2.get(2))      # returns 4
+print(our_cache2.get(3))      # return 7
+print(our_cache2.get(4))      # return 9
+
+##test case 3
+print("#######Test Case 3 #########")
+our_cache2 = LRU_Cache(3)
+
+our_cache2.set(1, 2)
+our_cache2.set(2, 4)
+our_cache2.set(3, 7)
+our_cache2.set(4, )
+our_cache2.set(5, 8)
+print(our_cache2.get(1))      # returns -1
+print(our_cache2.get(2))      # returns -1
+print(our_cache2.get(3))      # returns 7
+print(our_cache2.get(4))      # returns None

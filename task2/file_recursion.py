@@ -5,7 +5,7 @@ and 'm' is the number of directories present in input path
 
 import os
 
-def find_files(suffix, path):
+def find_files(suffix=None, path=None):
     """
     Find all files beneath path with file name suffix.
 
@@ -21,7 +21,10 @@ def find_files(suffix, path):
     Returns:
        a list of paths
     """
-
+    if suffix==None or suffix=="":
+        return None
+    elif path==None or path=="":
+        return None 
     list_of_files=list()
     for entry in os.listdir(path):
         entry.strip()
@@ -36,5 +39,6 @@ def find_files(suffix, path):
 print(find_files('.c','/Users/tony/Downloads/testdir')) #return .c files recursively 
 print(find_files('.h','/Users/tony/Downloads/testdir')) #returns .h files recursively
 print(find_files('.cpp','/Users/tony/Downloads/testdir')) #returns .cpp files recursively
-
+print(find_files('.h','')) #returns None
+print(find_files('','/Users/tony/Downloads/testdir')) #returns None
 ## returns emty list [] if no files are present

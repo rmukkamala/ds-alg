@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
     #test case 2
     print("#####TEST CASE 2#############")
-    a_great_sentence = "This is the best day in the entire universe for everyone"
+    a_great_sentence = "AAAAAAAAAAAA"
 
     print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
     print ("The content of the data is: {}\n".format(a_great_sentence))

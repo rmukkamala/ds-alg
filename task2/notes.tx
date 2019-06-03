@@ -5,6 +5,8 @@ Used queue for tracking/insertion/deletion.
 Implemented the queue using doubly linked lists.
 Time Complexity: The above data structures help us in achieving O(1) time complexity.
 
+Space Complexity: O(n) (for using hash tables)
+
 get Method:
 # Retrieve item from provided key. Return -1 if nonexistent.
 set Method:
@@ -14,8 +16,9 @@ set Method:
 File Recursion:
 The find_files function will return for every file in a folders recursively with given input pattern(extension)
 Used recursion to find the relevant files in the sub folders as well.
+Used list to append the resulting files as entries. Also, used in-built python  functions 'isdir','endswith','listdir'
 Time Complexity: O(n*m) where n is the number of files and m is the number of directories.(It will mostly lead to O(n) in most cases since n will be bigger than m)
-
+Space Complexity: O(n)
 
 Huffman Coding:
 Ideally, we use min-heaps to implement this. But since, we did not cover them in this module. I went with a different approach.
@@ -31,7 +34,7 @@ def encode: encode the text string. We use the helper functions above to generat
 def decode: decode the binary string. Based on the bit code in the string, we traverse the tree until we reach the leaf nodes.
 
 Time Complexity: 
-For encoding, worst case may be O(n*2) since the the frequency method uses a dict get method in a for loop.
+For encoding, worst case may be O(n^2) since the the frequency method uses a dict get method in a for loop.
 For decoding , worst case will be O(n)
 
 
