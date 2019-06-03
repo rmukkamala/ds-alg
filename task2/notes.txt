@@ -5,7 +5,8 @@ Used queue for tracking/insertion/deletion.
 Implemented the queue using doubly linked lists.
 Time Complexity: The above data structures help us in achieving O(1) time complexity.
 
-Space Complexity: O(n) (for using hash tables)
+Space Complexity: This will be linear time O(n) (for using hash tables, linked lists)
+**Constant space (O(1))would be valid if we had used only a few auxillary variables(we didn't in this case).
 
 get Method:
 # Retrieve item from provided key. Return -1 if nonexistent.
@@ -16,9 +17,13 @@ set Method:
 File Recursion:
 The find_files function will return for every file in a folders recursively with given input pattern(extension)
 Used recursion to find the relevant files in the sub folders as well.
-Used list to append the resulting files as entries. Also, used in-built python  functions 'isdir','endswith','listdir'
+Used 'list' to append the resulting files as entries. Added the files recursively for every folder/sub-folder which exists under the given path(loosely based on DFS).Also, used in-built python  functions 'isdir','endswith','listdir'
 Time Complexity: O(n*m) where n is the number of files and m is the number of directories.(It will mostly lead to O(n) in most cases since n will be bigger than m)
-Space Complexity: O(n)
+Space Complexity: 
+*Space complexity of recursive algorithm is proportinal to maximum depth of recursion tree generated.
+*If each function call of recursive algorithm takes O(m) space and if the maximum depth of recursion tree is 'n' then space complexity of recursive algorithm would be O(nm).
+In this case, it will be O(n) where n will be the number of directories. 'm' the space units occupied by each call can be ignored(since this will not factor in deciding for large data sets) 
+
 
 Huffman Coding:
 Ideally, we use min-heaps to implement this. But since, we did not cover them in this module. I went with a different approach.
@@ -37,11 +42,16 @@ Time Complexity:
 For encoding, worst case may be O(n^2) since the the frequency method uses a dict get method in a for loop.
 For decoding , worst case will be O(n)
 
+Space Complexity:
+This would have O(n^2) since this solution involved 2D data structures (for example: the tuple 'least_two' in 'buildtree' function)
 
-
-Active Dirs:
+Active :
 We use recursion to get all the users in a group and their sub-groups. A better approach may be using binary search tree which is not yet covered in this module.
-Time Complexity: O(m*n) where m is the number of users and n is the number of groups
+Time Complexity: O(m*n) where m is the number of users and n is the number of groups.
+Space Complexity: 
+*Space complexity of recursive algorithm is proportinal to maximum depth of recursion tree generated.
+*If each function call of recursive algorithm takes O(m) space and if the maximum depth of recursion tree is 'n' then space complexity of recursive algorithm would be O(nm).
+In this case, it will be O(n) where n will be the number of groups. 'm' the space units occupied by each call can be ignored(since this will not factor in deciding for large data sets) 
 
 Blockchain:
 We use a list to hold all the blocks which are interlinked similar to linked lists.
@@ -49,13 +59,17 @@ We create genesis block as the first block to start with. We add a block using t
 Time Complexity: 
 Worst Case to display blockchain function is O(n).
 Wrost case to create and add a block is O(1).
-
+Space Complexity:
+This would be linear time O(n) where n is length of the blockchain (since we used data structures such as lists and user defined data structures such as 'block'.)
+**Constant space (O(1))would be valid if we had used only a few auxillary variables(we didn't in this case).
 
 Union and intersection of 2 linked lists:
 Both union and intersection operations require not to have duplicates in them.
-We use dictionary as a lookup to remove deuplicates.
+We use dictionary as a lookup to remove duplicates.
 Union operation just assigns the head of one linked list to the tail of another linked list. Then, we remove duplicates from the linked list.
 Intersection operation uses a dictionary as a lookup for one linked list and the traverse through another linked list to get the common elements and then remove the duplicates.
 Time Complexity:
-Due to the precense of a dictionary lookup in a while loop, bot the union and intersection have a worst case analysis of O(n*2) where n is the number of elements in the list.
+Due to the presence of a dictionary lookup in a while loop, both the union and intersection have a worst case analysis of O(n*2) where n is the number of elements in the list.
+Space Complexity:
+This would be O(m) or O(n) where n and m are the length of the 2 linked lists respectively.
 
