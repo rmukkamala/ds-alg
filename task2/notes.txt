@@ -26,6 +26,8 @@ In this case, it will be O(n) where n will be the number of directories. 'm' the
 
 
 Huffman Coding:
+##NOTE## Reference: I referred to the below URL for the implementation of this Huffman problem:
+http://www.openbookproject.net/py4fun/huffman
 Ideally, we use min-heaps to implement this. But since, we did not cover them in this module. I went with a different approach.
 Used tuples and lists to implement binary trees as data structure. 
 

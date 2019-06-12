@@ -8,7 +8,8 @@ Build the Huffman Tree by assigning a binary code to each letter, using shorter 
 Trim the Huffman Tree (remove the frequencies from the previously built tree).
 Encode the text into its compressed form.
 Decode the text from its compressed form.
-
+##NOTE## Reference: I referred to the below URL for the implementation of this Huffman problem:
+http://www.openbookproject.net/py4fun/huffman
 """
 
 import sys,string
