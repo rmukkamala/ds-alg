@@ -22,7 +22,23 @@ def sqrt(number):
     Returns:
        int: Floored Square Root
     """
-    pass
+    start=0
+    end=number
+    while start<=end:
+      midpoint=(start+end)//2.0
+      #print(f"start is {start} and end is {end} midpoint is {midpoint}")
+      mid_square=midpoint*midpoint
+      #print(mid_square)
+      if (mid_square)==number:
+         return midpoint
+      elif number>(mid_square):
+         start=midpoint+1
+      else:
+         #print(f"midpoint is {midpoint}")
+         #print(f"mid_square is {mid_square}")
+         end=midpoint-1
+    return midpoint
+   
 
 print ("Pass" if  (3 == sqrt(9)) else "Fail")
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
