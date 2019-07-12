@@ -26,22 +26,24 @@ def sqrt(number):
     end=number
     while start<=end:
       midpoint=(start+end)//2.0
-      #print(f"start is {start} and end is {end} midpoint is {midpoint}")
+      print(f"start is {start} and end is {end} midpoint is {midpoint}")
       mid_square=midpoint*midpoint
       #print(mid_square)
       if (mid_square)==number:
          return midpoint
       elif number>(mid_square):
          start=midpoint+1
+         result=midpoint
       else:
-         #print(f"midpoint is {midpoint}")
-         #print(f"mid_square is {mid_square}")
+         print(f"midpoint is {midpoint}")
+         print(f"mid_square is {mid_square}")
          end=midpoint-1
-    return midpoint
+
+    return result
    
 
 print ("Pass" if  (3 == sqrt(9)) else "Fail")
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
 print ("Pass" if  (4 == sqrt(16)) else "Fail")
 print ("Pass" if  (1 == sqrt(1)) else "Fail")
-print ("Pass" if  (5 == sqrt(27)) else "Fail")
+print ("Pass" if  (6 == sqrt(48)) else "Fail")
