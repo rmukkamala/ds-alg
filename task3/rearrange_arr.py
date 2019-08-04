@@ -18,7 +18,18 @@ def rearrange_digits(input_list):
     Returns:
        (int),(int): Two maximum sums
     """
-    pass
+    tarr=input_list.copy()
+    fnum=''
+    snum=''
+    for i in input_list:
+        maxnum=max(tarr)
+        tarr.remove(maxnum)
+        if i%2==0:
+            fnum=str(fnum) + str(maxnum)
+        else:
+            snum=str(snum) + str(maxnum)
+    print(f"fnum is {fnum} and snum is {snum}")
+    return int(fnum), int(snum)
 
 def test_function(test_case):
     output = rearrange_digits(test_case[0])

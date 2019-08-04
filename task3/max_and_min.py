@@ -14,7 +14,22 @@ def get_min_max(ints):
     Args:
        ints(list): list of integers containing one or more integers
     """
-   pass
+    print(f"input arr is {ints}")
+    max=0
+    min=len(ints)-1
+    for i in range(1,len(ints)):
+        if ints[i]>ints[max]:
+            temp=ints[i]
+            ints[i]=ints[max]
+            ints[max]=temp
+        if ints[i]<ints[min]:
+            temp=ints[i]
+            ints[i]=ints[min]
+            ints[min]=temp
+    print(f"max value is {ints[max]}")
+    print(f"min value is {ints[min]}")
+    return(ints[min],ints[max])
+   
 
 ## Example Test Case of Ten Integers
 import random

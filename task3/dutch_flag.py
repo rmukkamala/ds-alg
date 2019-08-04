@@ -15,7 +15,21 @@ def sort_012(input_list):
     Args:
        input_list(list): List to be sorted
     """
-    pass
+    p1=0
+    p2=0
+    p3=len(input_list)-1
+    while p2<=p3:
+        if input_list[p2]==0:
+            input_list[p1],input_list[p2]=input_list[p2],input_list[p1]
+            p1+=1
+            p2+=1
+        elif input_list[p2]==1:
+            p2+=1
+        else:
+            input_list[p3],input_list[p2]=input_list[p2],input_list[p3]
+            p3-=1
+    return input_list
+
 
 def test_function(test_case):
     sorted_array = sort_012(test_case)
