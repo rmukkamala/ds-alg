@@ -22,31 +22,52 @@ we ask for suffixes from the f node, we would expect to receive ["un", "unction"
 Using the code you wrote for the TrieNode above, try to add the suffixes function below. (Hint: recurse down the trie, collecting suffixes as you go.)
 """
 
+
 ## Represents a single node in the Trie
 class TrieNode:
     def __init__(self):
-        ## Initialize this node in the Trie
-    
-    def insert(self, char):
-        ## Add a child node in this Trie
+        self.children={}
+        self.isLast=False
 
-    def suffixes(self, suffix = ''):
-        ## Recursive function that collects the suffix for 
-        ## all complete words below this point
-
-        
 ## The Trie itself containing the root node and insert/find functions
 class Trie:
     def __init__(self):
-        ## Initialize this Trie (add a root node)
-
-    def insert(self, word):
+        self.root= TrieNode()
+        self.allwords=[]
+    
+    def insert(self,word): 
         ## Add a word to the Trie
+        curr=self.root
+        for ch in word:
+            if ch not in curr.children.keys():
+                curr.children[ch]=TrieNode()
+            curr=curr.children[ch]
+        curr.isLast=True
 
-    def find(self, prefix):
-        ## Find the Trie node that represents this prefix
+    def suffix_helper(self,node,word=''):
+        if node.isLast:
+            self.allwords.append(word)
+        for char,node in node.children.items():
+            self.suffix_helper(node,word + char)
 
-
+    def find(self,prefix):
+        curr=self.root
+        notThere=False
+        for char in list(prefix):
+            if char not in curr.children:
+                notThere=True
+                break
+            curr=curr.children[char]
+        if notThere:
+            print("None found")
+            return False
+        elif curr.isLast and not curr.children:
+            print("None found")
+            return False
+        self.allwords=list() ##clearing the buffer
+        self.suffix_helper(curr)
+        print(self.allwords)
+        return True
 
 MyTrie = Trie()
 wordList = [
@@ -57,8 +78,14 @@ wordList = [
 for word in wordList:
     MyTrie.insert(word)
 
+##display suffixes
+MyTrie.find("f")  # ['un', 'unction', 'actory']
+MyTrie.find("a")  # ['nt', 'nthology', 'ntagonist', 'ntonym']
+MyTrie.find("h")  # None found
+MyTrie.find("t")  # ['rie', 'rigger', 'rigonometry', 'ripod']
 
-from ipywidgets import widgets
+
+""" from ipywidgets import widgets
 from IPython.display import display
 from ipywidgets import interact
 def f(prefix):
@@ -70,4 +97,4 @@ def f(prefix):
             print(prefix + " not found")
     else:
         print('')
-interact(f,prefix='');
+interact(f,prefix=''); """

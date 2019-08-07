@@ -8,6 +8,7 @@ class TrieNode:
 class Trie:
     def __init__(self):
         self.root= TrieNode()
+        self.allwords=[]
     
     def insert(self,word):
         curr=self.root
@@ -25,20 +26,38 @@ class Trie:
             curr=curr.children[ch]
         return curr.isLast
 
-    def all_suffix_old(self,word):
-        result=list()
-        char=''
-        curr=self.root
-        for ch in word:
-            #while 
-            if ch not in curr.children:
-                return result
-            char+=ch
-            curr=curr.children[ch]
-        result.append(char)
-        return result
+    def suffix_helper(self,node,word):
+        if node.isLast:
+            self.allwords.append(word)
+        for char,node in node.children.items():
+            self.suffix_helper(node,word + char)
 
-    def all_suffixes(self, prefix):
+    def all_suffixes(self,pre):
+        curr=self.root
+        notThere=False
+        word=''
+        for char in list(pre):
+            if char not in curr.children:
+                notThere=True
+                break
+            word+=char
+            curr=curr.children[char]
+        word=word[1:]
+        #print(type(word))
+        if notThere:
+            return -1
+        elif curr.isLast and not curr.children:
+            return -2
+        self.suffix_helper(curr,word)
+        print(self.allwords)
+        return 1
+
+
+
+
+
+
+    def all_suffixes_org(self, prefix):
         curr=self.root
         results = set()
         if curr.isLast:
@@ -48,7 +67,7 @@ class Trie:
         #return reduce(lambda a, b: a | b, [node.all_suffixes(prefix + char) for (char, node) in self.children.items()]) | results
         #reduce(lambda a, b: a | b, [node.all_suffixes(prefix + char) for (char, node) in self.children.items()]) | results
         for (char, node) in curr.children.items():
-            node.all_suffixes(prefix + char)
+            [node.all_suffixes(prefix + char)
         return results
 
 
@@ -63,16 +82,12 @@ class Trie:
  
             
 
-                
-
-
-
-
-
-
-
-
-arr=['hello','hi','good','morning','mow']
+#arr=['hello','hi','good','morning','mow']
+arr= [
+    "ant", "anthology", "antagonist", "antonym", 
+    "fun", "function", "factory", 
+    "trie", "trigger", "trigonometry", "tripod"
+]
 #print(type(arr))
 
 t= Trie()
@@ -81,10 +96,10 @@ for entry in arr:
     t.insert(entry)
 
 msg='good'
-print(t.contains(msg))
+#print(t.contains(msg))
 
 #print(t.displayTrie())
 
-print(t.all_suffixes('h'))
+print(t.all_suffixes('f'))
 
 
