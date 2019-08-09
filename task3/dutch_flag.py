@@ -15,9 +15,9 @@ def sort_012(input_list):
     Args:
        input_list(list): List to be sorted
     """
-    p1=0
-    p2=0
-    p3=len(input_list)-1
+    p1=0  ##low pointer
+    p2=0  ##mid pointer
+    p3=len(input_list)-1  ##high pointer
     while p2<=p3:
         if input_list[p2]==0:
             input_list[p1],input_list[p2]=input_list[p2],input_list[p1]
@@ -42,3 +42,4 @@ def test_function(test_case):
 test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
 test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
 test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
+test_function([0,2,1])
